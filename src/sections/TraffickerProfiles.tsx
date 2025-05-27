@@ -87,7 +87,7 @@ const TraffickerProfiles: React.FC = () => {
           ]}
           fees="€4,000-€5,000 for Italy segment"
           dangerLevel="High-Risk Individual"
-          photoUrl="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=300"
+          photoUrl="/images/mustafa-casual.jpg"
           delay={0}
         />
         
