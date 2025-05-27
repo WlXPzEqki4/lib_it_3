@@ -1,6 +1,7 @@
 import React from 'react';
 import ScrollSection from '../components/ScrollSection';
 import AnimatedText from '../components/AnimatedText';
+import DataCard from '../components/DataCard';
 import { FileWarning, Fingerprint, Calendar, ArrowRight } from 'lucide-react';
 
 const CircumventingDublin: React.FC = () => {
@@ -46,7 +47,7 @@ const CircumventingDublin: React.FC = () => {
                 <div className="grid grid-cols-1 gap-4 mt-4">
                   <div className="bg-primary-800/50 rounded-lg p-2">
                     <img 
-                      src="/images/permit-front.jpg" 
+                      src="./images/permit-front.jpg" 
                       alt="Forged Italian Residence Permit - Front"
                       className="w-full rounded-lg"
                     />
@@ -54,7 +55,7 @@ const CircumventingDublin: React.FC = () => {
                   </div>
                   <div className="bg-primary-800/50 rounded-lg p-2">
                     <img 
-                      src="/images/permit-uv.jpg" 
+                      src="./images/permit-uv.jpg" 
                       alt="Forged Italian Residence Permit - UV Security Features"
                       className="w-full rounded-lg"
                     />
