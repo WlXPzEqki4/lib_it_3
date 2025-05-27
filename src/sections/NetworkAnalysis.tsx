@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ScrollSection from '../components/ScrollSection';
 import AnimatedText from '../components/AnimatedText';
 import NetworkVisualization from '../components/NetworkVisualization';
-import { Network } from 'lucide-react';
+import { Network, X, User, Phone, MapPin, AlertTriangle, Info } from 'lucide-react';
 
 const nodes = [
   {
@@ -179,6 +179,98 @@ const edges = [
 ];
 
 const NetworkAnalysis: React.FC = () => {
+  const [selectedNode, setSelectedNode] = useState<any>(null);
+
+  const handleNodeClick = (node: any) => {
+    setSelectedNode(node);
+  };
+
+  const renderNodeDetails = () => {
+    if (!selectedNode) return null;
+
+    return (
+      <div className="absolute top-4 right-4 w-80 bg-primary-900/95 backdrop-blur-sm rounded-lg shadow-xl border border-primary-700 p-4 z-10">
+        <div className="flex justify-between items-start mb-4">
+          <h4 className="text-lg font-semibold text-white">{selectedNode.label}</h4>
+          <button 
+            onClick={() => setSelectedNode(null)}
+            className="text-primary-400 hover:text-white transition-colors"
+          >
+            <X size={20} />
+          </button>
+        </div>
+
+        <div className="space-y-4">
+          {selectedNode.type === 'trafficker_kingpin' && (
+            <>
+              <div className="flex items-start gap-3">
+                <User className="w-5 h-5 text-teal-400 flex-shrink-0 mt-1" />
+                <div>
+                  <p className="text-primary-200">Real Name: {selectedNode.aka}</p>
+                  <p className="text-primary-200">Age: {selectedNode.age}</p>
+                  <p className="text-primary-200">Nationality: {selectedNode.nationality}</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <MapPin className="w-5 h-5 text-teal-400 flex-shrink-0 mt-1" />
+                <div>
+                  <p className="text-primary-200">Current Location: {selectedNode.current_location}</p>
+                  <p className="text-primary-200">Origin: {selectedNode.region_of_origin}</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <Phone className="w-5 h-5 text-teal-400 flex-shrink-0 mt-1" />
+                <div>
+                  <p className="text-primary-200">Phone: {selectedNode.phone}</p>
+                  <p className="text-primary-200">Telegram: {selectedNode.telegram_account_name}</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <AlertTriangle className="w-5 h-5 text-accent-400 flex-shrink-0 mt-1" />
+                <p className="text-primary-200">{selectedNode.reputation}</p>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <Info className="w-5 h-5 text-teal-400 flex-shrink-0 mt-1" />
+                <p className="text-primary-200">Operational Scope: {selectedNode.operational_scope}</p>
+              </div>
+            </>
+          )}
+
+          {selectedNode.type === 'trafficker_assistant' && (
+            <>
+              <div className="flex items-start gap-3">
+                <Phone className="w-5 h-5 text-teal-400 flex-shrink-0 mt-1" />
+                <p className="text-primary-200">Contact: {selectedNode.phone}</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <Info className="w-5 h-5 text-teal-400 flex-shrink-0 mt-1" />
+                <p className="text-primary-200">{selectedNode.role_description}</p>
+              </div>
+            </>
+          )}
+
+          {selectedNode.type === 'criminal_organization' && (
+            <div className="flex items-start gap-3">
+              <Info className="w-5 h-5 text-teal-400 flex-shrink-0 mt-1" />
+              <p className="text-primary-200">{selectedNode.characteristics}</p>
+            </div>
+          )}
+
+          {(selectedNode.type.includes('location_country') || selectedNode.type === 'victim_exploited_group') && (
+            <div className="flex items-start gap-3">
+              <Info className="w-5 h-5 text-teal-400 flex-shrink-0 mt-1" />
+              <p className="text-primary-200">{selectedNode.role || selectedNode.description}</p>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <ScrollSection id="network-analysis" className="bg-gradient-to-b from-primary-800 to-primary-900">
       <AnimatedText delay={0}>
@@ -200,8 +292,13 @@ const NetworkAnalysis: React.FC = () => {
             <h3 className="text-xl font-semibold text-white">Trafficking Network Structure</h3>
           </div>
           
-          <div className="h-[600px] bg-primary-700/50 rounded-lg overflow-hidden">
-            <NetworkVisualization nodes={nodes} edges={edges} />
+          <div className="relative h-[600px] bg-primary-700/50 rounded-lg overflow-hidden">
+            <NetworkVisualization 
+              nodes={nodes} 
+              edges={edges} 
+              onNodeClick={handleNodeClick}
+            />
+            {renderNodeDetails()}
           </div>
 
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
