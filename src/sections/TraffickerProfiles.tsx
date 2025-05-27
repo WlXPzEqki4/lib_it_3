@@ -100,22 +100,26 @@ const TraffickerProfiles: React.FC = () => {
         />
         
         <ProfileCard 
-          name="Abu Al-Nour"
-          realName="Issam Baqrat"
-          origin="Libya"
-          base="Libya, coastal areas"
+          name="Ziad Al-Iraqi"
+          origin="Iraq"
+          base="Libya, Turkey"
           routes={[
-            "Libya-Italy direct sea route",
-            "Coordinates Mediterranean crossings"
+            "Turkey → Libya → Italy",
+            "Libya → Italy (Direct)"
           ]}
           methods={[
-            "Uses dilapidated boats and rubber vessels",
-            "Monitors weather patterns for crossing timing",
-            "Employs local contacts for migrant gathering",
-            "Minimal safety considerations to maximize profit"
+            "Coordinates logistical movements",
+            "Organizes border crossings",
+            "Facilitates migrant transport",
+            "Works under Mustafa Berlin's supervision"
           ]}
-          fees="€8,000-€10,000 for premium crossing"
-          photoUrl="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=300"
+          fees="Part of Mustafa Berlin's network operations"
+          additionalInfo={[
+            "Professional staff for organizing border crossings",
+            "Key role in coordinating logistical movements",
+            "Ensures operations are executed on time",
+            "Direct report to Mustafa Berlin"
+          ]}
           delay={200}
         />
         
