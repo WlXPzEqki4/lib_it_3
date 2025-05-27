@@ -1,16 +1,25 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, User, DollarSign, Route } from 'lucide-react';
+import { MapPin, User, DollarSign, Route, AlertTriangle, Users, Phone } from 'lucide-react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
+
+interface Associate {
+  name: string;
+  role: string;
+  contact?: string;
+}
 
 interface ProfileCardProps {
   name: string;
   realName?: string;
   origin: string;
   base: string;
+  age?: number;
   routes: string[];
   methods: string[];
   fees: string;
+  associates?: Associate[];
+  dangerLevel?: string;
   photoUrl?: string;
   delay?: number;
 }
@@ -20,9 +29,12 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   realName,
   origin,
   base,
+  age,
   routes,
   methods,
   fees,
+  associates,
+  dangerLevel,
   photoUrl,
   delay = 0
 }) => {
@@ -60,10 +72,22 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
                 Real name: {realName}
               </p>
             )}
+            {age && (
+              <p className="text-sm text-primary-300">
+                Age: {age}
+              </p>
+            )}
           </div>
         </div>
 
-        <div className="space-y-3 text-sm">
+        {dangerLevel && (
+          <div className="mb-4 flex items-center bg-accent-900/30 text-accent-400 px-3 py-2 rounded-md">
+            <AlertTriangle size={18} className="mr-2" />
+            <span className="text-sm font-medium">{dangerLevel}</span>
+          </div>
+        )}
+
+        <div className="space-y-4 text-sm">
           <div className="flex items-start">
             <MapPin size={18} className="text-teal-400 mr-2 mt-0.5 flex-shrink-0" />
             <div>
@@ -89,7 +113,30 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
             <p className="text-primary-200">Fees: {fees}</p>
           </div>
 
-          <div className="mt-4 pt-4 border-t border-primary-700">
+          {associates && associates.length > 0 && (
+            <div className="flex items-start pt-4 border-t border-primary-700">
+              <Users size={18} className="text-teal-400 mr-2 mt-0.5 flex-shrink-0" />
+              <div>
+                <p className="text-primary-200 font-medium mb-2">Known Associates:</p>
+                <div className="space-y-3">
+                  {associates.map((associate, index) => (
+                    <div key={index} className="bg-primary-700/50 rounded-md p-2">
+                      <p className="text-primary-100 font-medium">{associate.name}</p>
+                      <p className="text-primary-300 text-sm">{associate.role}</p>
+                      {associate.contact && (
+                        <div className="flex items-center mt-1 text-primary-400">
+                          <Phone size={14} className="mr-1" />
+                          <span className="text-xs">{associate.contact}</span>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className="pt-4 border-t border-primary-700">
             <p className="text-primary-200 font-medium mb-2">Methods:</p>
             <ul className="list-disc pl-4 text-primary-300">
               {methods.map((method, index) => (
