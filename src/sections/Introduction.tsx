@@ -22,7 +22,7 @@ const Introduction: React.FC = () => {
     },
     {
       id: 'routes',
-      icon: <Route className="text-teal-400" size={24} />,
+      icon: <Route className="text-teal-400\" size={24} />,
       title: 'Critical Routes',
       content: 'The Libya-Italy maritime corridor serves as a primary entry point to Europe, with multiple subsidiary routes and transit points.',
       details: [
@@ -46,7 +46,7 @@ const Introduction: React.FC = () => {
     },
     {
       id: 'financial',
-      icon: <DollarSign className="text-accent-400" size={24} />,
+      icon: <DollarSign className="text-accent-400\" size={24} />,
       title: 'Financial Scale',
       content: 'Significant profits are generated through varying fee structures and additional service charges.',
       details: [
