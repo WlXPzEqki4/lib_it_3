@@ -94,20 +94,34 @@ const Introduction: React.FC = () => {
             <p className="mb-6">
               This investigative report provides detailed insights into sophisticated human smuggling operations facilitating irregular migration, with a primary focus on the perilous Libya-Italy maritime corridor—a critical entry point into Europe.
             </p>
-            <p className="mb-12">
+            <p className="mb-6">
               Through extensive fieldwork, including direct interviews with active smugglers, migrants, and victims, this research illuminates the intricate mechanics, key figures, and multi-stage pathways that define this illicit ecosystem.
             </p>
           </AnimatedText>
 
           <AnimatedText delay={1400}>
-            <div className="bg-accent-900/30 border border-accent-800 rounded-lg p-6 mt-8">
-              <div className="flex items-start gap-3 mb-3">
+            <div className="bg-accent-900/30 border border-accent-800 rounded-lg p-6">
+              <div className="flex items-start gap-3 mb-4">
                 <AlertOctagon size={24} className="text-accent-400 flex-shrink-0 mt-1" />
-                <h4 className="text-lg font-semibold text-white">Key Intelligence Finding</h4>
+                <div>
+                  <h4 className="text-lg font-semibold text-white mb-3">Key Intelligence Finding</h4>
+                  <p className="font-bold text-white mb-3">Italy – Convergence Point for Tiered Smuggling Operations</p>
+                  <ul className="space-y-2 text-primary-200">
+                    <li className="flex items-start gap-2">
+                      <span className="text-accent-400 mt-1.5">•</span>
+                      <span>This report illuminates Italy's pivotal role as a convergence point where initial maritime smuggling operations, such as those managed by the 'Mustafa Berlin-centered' syndicate and 'Abu Al-Nour,' interface with distinct, specialized networks.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-accent-400 mt-1.5">•</span>
+                      <span>These latter entities are dedicated to facilitating onward illicit travel deeper into Europe from Italian soil, utilizing established routes and methods including document forgery.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-accent-400 mt-1.5">•</span>
+                      <span>This creates a multi-layered operational challenge within Italian jurisdiction.</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <p className="text-primary-200">
-                Italy – Convergence Point for Tiered Smuggling Operations. This report illuminates Italy's pivotal role as a convergence point where initial maritime smuggling operations, such as those managed by the 'Mustafa Berlin-centered' syndicate and 'Abu Al-Nour,' interface with distinct, specialized networks like that of 'Mahend Al-Iraqi.' These latter entities are dedicated to facilitating onward illicit travel deeper into Europe from Italian soil, utilizing established routes and methods including document forgery, thereby creating a multi-layered operational challenge within Italian jurisdiction.
-              </p>
             </div>
           </AnimatedText>
         </div>
