@@ -189,22 +189,22 @@ const NetworkAnalysis: React.FC = () => {
     if (!selectedNode) return null;
 
     return (
-      <div className="absolute top-4 right-4 w-80 bg-primary-900/95 backdrop-blur-sm rounded-lg shadow-xl border border-primary-700 p-4 z-10">
-        <div className="flex justify-between items-start mb-4">
-          <h4 className="text-lg font-semibold text-white">{selectedNode.label}</h4>
+      <div className="absolute top-4 right-4 w-64 bg-primary-900/95 backdrop-blur-sm rounded-lg shadow-xl border border-primary-700 p-3 z-10">
+        <div className="flex justify-between items-start mb-2">
+          <h4 className="text-sm font-semibold text-white">{selectedNode.label}</h4>
           <button 
             onClick={() => setSelectedNode(null)}
             className="text-primary-400 hover:text-white transition-colors"
           >
-            <X size={20} />
+            <X size={16} />
           </button>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3 text-xs">
           {selectedNode.type === 'trafficker_kingpin' && (
             <>
-              <div className="flex items-start gap-3">
-                <User className="w-5 h-5 text-teal-400 flex-shrink-0 mt-1" />
+              <div className="flex items-start gap-2">
+                <User className="w-4 h-4 text-teal-400 flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="text-primary-200">Real Name: {selectedNode.aka}</p>
                   <p className="text-primary-200">Age: {selectedNode.age}</p>
@@ -212,29 +212,29 @@ const NetworkAnalysis: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-teal-400 flex-shrink-0 mt-1" />
+              <div className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-teal-400 flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="text-primary-200">Current Location: {selectedNode.current_location}</p>
                   <p className="text-primary-200">Origin: {selectedNode.region_of_origin}</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3">
-                <Phone className="w-5 h-5 text-teal-400 flex-shrink-0 mt-1" />
+              <div className="flex items-start gap-2">
+                <Phone className="w-4 h-4 text-teal-400 flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="text-primary-200">Phone: {selectedNode.phone}</p>
                   <p className="text-primary-200">Telegram: {selectedNode.telegram_account_name}</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3">
-                <AlertTriangle className="w-5 h-5 text-accent-400 flex-shrink-0 mt-1" />
+              <div className="flex items-start gap-2">
+                <AlertTriangle className="w-4 h-4 text-accent-400 flex-shrink-0 mt-0.5" />
                 <p className="text-primary-200">{selectedNode.reputation}</p>
               </div>
 
-              <div className="flex items-start gap-3">
-                <Info className="w-5 h-5 text-teal-400 flex-shrink-0 mt-1" />
+              <div className="flex items-start gap-2">
+                <Info className="w-4 h-4 text-teal-400 flex-shrink-0 mt-0.5" />
                 <p className="text-primary-200">Operational Scope: {selectedNode.operational_scope}</p>
               </div>
             </>
@@ -242,27 +242,27 @@ const NetworkAnalysis: React.FC = () => {
 
           {selectedNode.type === 'trafficker_assistant' && (
             <>
-              <div className="flex items-start gap-3">
-                <Phone className="w-5 h-5 text-teal-400 flex-shrink-0 mt-1" />
+              <div className="flex items-start gap-2">
+                <Phone className="w-4 h-4 text-teal-400 flex-shrink-0 mt-0.5" />
                 <p className="text-primary-200">Contact: {selectedNode.phone}</p>
               </div>
-              <div className="flex items-start gap-3">
-                <Info className="w-5 h-5 text-teal-400 flex-shrink-0 mt-1" />
+              <div className="flex items-start gap-2">
+                <Info className="w-4 h-4 text-teal-400 flex-shrink-0 mt-0.5" />
                 <p className="text-primary-200">{selectedNode.role_description}</p>
               </div>
             </>
           )}
 
           {selectedNode.type === 'criminal_organization' && (
-            <div className="flex items-start gap-3">
-              <Info className="w-5 h-5 text-teal-400 flex-shrink-0 mt-1" />
+            <div className="flex items-start gap-2">
+              <Info className="w-4 h-4 text-teal-400 flex-shrink-0 mt-0.5" />
               <p className="text-primary-200">{selectedNode.characteristics}</p>
             </div>
           )}
 
           {(selectedNode.type.includes('location_country') || selectedNode.type === 'victim_exploited_group') && (
-            <div className="flex items-start gap-3">
-              <Info className="w-5 h-5 text-teal-400 flex-shrink-0 mt-1" />
+            <div className="flex items-start gap-2">
+              <Info className="w-4 h-4 text-teal-400 flex-shrink-0 mt-0.5" />
               <p className="text-primary-200">{selectedNode.role || selectedNode.description}</p>
             </div>
           )}
