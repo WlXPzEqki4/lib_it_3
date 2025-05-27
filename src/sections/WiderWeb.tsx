@@ -113,25 +113,29 @@ const WiderWeb: React.FC = () => {
         <div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <ProfileCard 
-              name="Ziad Al-Iraqi"
-              origin="Iraq"
-              base="Libya, Turkey"
+              name="Abu Al-Nour"
+              realName="Issam Baqrat"
+              origin="Syria"
+              base="Al-Hawarni, Libya"
               routes={[
-                "Turkey → Libya → Italy",
-                "Libya → Italy (Direct)"
+                "Libya → Italy (Direct)",
+                "Eastern Libya → Italian Skatra",
+                "Libya → Lampedusa"
               ]}
               methods={[
-                "Coordinates logistical movements",
-                "Organizes border crossings",
-                "Facilitates migrant transport",
-                "Works under Mustafa Berlin's supervision"
+                "Uses small and dilapidated boats",
+                "Night operations and bad weather timing",
+                "Advanced security bypass methods",
+                "Multiple 'keys/codes' system",
+                "Complex network of intermediaries"
               ]}
-              fees="Part of Mustafa Berlin's network operations"
+              fees="€8,000-€10,000 for premium crossing"
               additionalInfo={[
-                "Professional staff for organizing border crossings",
-                "Key role in coordinating logistical movements",
-                "Ensures operations are executed on time",
-                "Direct report to Mustafa Berlin"
+                "Key figure in Libyan smuggling operations",
+                "Coordinates complex organized operations",
+                "Maintains anonymity through concealed identity",
+                "Claims expertise in handling authorities",
+                "Collaborates with multiple networks"
               ]}
               delay={200}
             />
