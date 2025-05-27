@@ -1,45 +1,77 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ScrollSection from '../components/ScrollSection';
 import AnimatedText from '../components/AnimatedText';
-import AnimatedMap from '../components/AnimatedMap';
-import { MapPinned } from 'lucide-react';
-
-const mediterraneanRoutes = [
-  {
-    id: 'libya-italy',
-    points: [
-      { x: 17.8739, y: 31.5494 }, // Libya
-      { x: 16.5, y: 33.5 },      // Mediterranean
-      { x: 15.5, y: 35.0 },      // Mediterranean
-      { x: 14.0154, y: 37.5994 }, // Sicily
-    ],
-    color: '#ff3333',
-    highlight: true
-  }
-];
-
-const keyLocations = [
-  { 
-    id: 'italy',
-    x: 14.0154, 
-    y: 37.5994, 
-    label: 'Italy',
-    highlight: true
-  },
-  { 
-    id: 'libya',
-    x: 17.8739, 
-    y: 31.5494, 
-    label: 'Libya',
-    highlight: false,
-    delay: 0.3
-  }
-];
+import { ChevronRight, Network, Users, Route, AlertTriangle, DollarSign, Map } from 'lucide-react';
 
 const Introduction: React.FC = () => {
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+
+  const summaryData = [
+    {
+      id: 'network',
+      icon: <Network className="text-teal-400" size={24} />,
+      title: 'Berlin-Centered Operation',
+      content: 'Led by Mustafa Jalil Ibrahim (Mustafa Berlin), this sophisticated network operates across multiple countries, from Iraq through Turkey and Libya to various European destinations.',
+      details: [
+        'Hierarchical structure with identified key operatives',
+        'Multi-stage journey coordination',
+        'Advanced technological capabilities',
+        'Extensive geographical reach'
+      ]
+    },
+    {
+      id: 'routes',
+      icon: <Route className="text-teal-400" size={24} />,
+      title: 'Critical Routes',
+      content: 'The Libya-Italy maritime corridor serves as a primary entry point to Europe, with multiple subsidiary routes and transit points.',
+      details: [
+        'Primary sea route from Libya to Sicily/Lampedusa',
+        'Secondary routes via Tunisia and Egypt',
+        'Internal EU movement pathways',
+        'Strategic transit points in Turkey and Malta'
+      ]
+    },
+    {
+      id: 'operations',
+      icon: <Map className="text-teal-400" size={24} />,
+      title: 'Operational Methods',
+      content: 'Networks employ sophisticated methods for recruitment, transport, and border crossing, often at great risk to migrants.',
+      details: [
+        'Coordinated maritime crossings',
+        'Document forgery operations',
+        'Multiple payment systems',
+        'Technology-enabled communication'
+      ]
+    },
+    {
+      id: 'financial',
+      icon: <DollarSign className="text-accent-400" size={24} />,
+      title: 'Financial Scale',
+      content: 'Significant profits are generated through varying fee structures and additional service charges.',
+      details: [
+        '€2,000-€5,000: Standard crossing',
+        '€8,000-€10,000: Premium service',
+        '€12,000: Complete package to Germany',
+        'Additional costs for forged documents'
+      ]
+    },
+    {
+      id: 'risks',
+      icon: <AlertTriangle className="text-accent-400" size={24} />,
+      title: 'Risk Factors',
+      content: 'The journey presents severe risks to migrants, with multiple documented hazards and dangers.',
+      details: [
+        'Dangerous maritime conditions',
+        'Overcrowded vessels',
+        'Limited safety equipment',
+        'Risk of detention or exploitation'
+      ]
+    }
+  ];
+
   return (
     <ScrollSection id="introduction" fullHeight className="bg-gradient-to-b from-primary-900 to-primary-800 pt-28">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
         <div>
           <AnimatedText delay={300} className="mb-4">
             <span className="text-accent-400 uppercase tracking-wider text-sm font-semibold">Investigative Report</span>
@@ -59,37 +91,58 @@ const Introduction: React.FC = () => {
           
           <AnimatedText delay={1200} className="text-primary-200 max-w-xl">
             <p className="mb-6">
-              Italy stands at the forefront of Europe's migration challenge, serving as both a primary destination and a critical transit hub for onward movement within Europe.
-            </p>
-            <p className="mb-6">
-              In 2025, thousands of migrants have arrived by sea, primarily through the Libya-Italy route, often at great personal risk and financial cost.
+              This investigative report provides detailed insights into sophisticated human smuggling operations facilitating irregular migration, with a primary focus on the perilous Libya-Italy maritime corridor—a critical entry point into Europe.
             </p>
             <p>
-              This report draws on extensive interviews with migrants and traffickers to document the networks, methods, and human realities behind these journeys.
+              Through extensive fieldwork, including direct interviews with active smugglers, migrants, and victims, this research illuminates the intricate mechanics, key figures, and multi-stage pathways that define this illicit ecosystem.
             </p>
-          </AnimatedText>
-          
-          <AnimatedText delay={1500}>
-            <div className="flex items-center mt-8 bg-primary-700/50 p-4 rounded-lg border-l-4 border-teal-500">
-              <MapPinned size={24} className="text-teal-400 mr-3 flex-shrink-0" />
-              <p className="text-primary-100">
-                <span className="font-semibold">Key Route Focus:</span> The Libya-Italy sea corridor remains the most trafficked Mediterranean crossing in 2025.
-              </p>
-            </div>
           </AnimatedText>
         </div>
         
-        <div className="h-screen-70 md:h-auto">
+        <div className="space-y-4">
           <AnimatedText delay={800}>
-            <h4 className="text-center text-primary-200 mb-4 font-medium">Primary Migration Routes</h4>
+            <h4 className="text-xl font-semibold text-white mb-6">Executive Summary</h4>
           </AnimatedText>
-          <AnimatedMap 
-            routes={mediterraneanRoutes} 
-            locations={keyLocations}
-            className="h-full w-full"
-            center={[15.5, 35.0]}
-            zoom={5}
-          />
+          
+          {summaryData.map((section, index) => (
+            <AnimatedText key={section.id} delay={1000 + (index * 200)}>
+              <div 
+                className={`bg-primary-800/60 backdrop-blur-sm rounded-lg transition-all duration-300 ${
+                  activeSection === section.id ? 'p-6' : 'p-4'
+                }`}
+              >
+                <div 
+                  className="flex items-center cursor-pointer"
+                  onClick={() => setActiveSection(activeSection === section.id ? null : section.id)}
+                >
+                  <div className="mr-4">{section.icon}</div>
+                  <div className="flex-grow">
+                    <h5 className="font-semibold text-white">{section.title}</h5>
+                    <p className="text-sm text-primary-200 mt-1">{section.content}</p>
+                  </div>
+                  <ChevronRight 
+                    size={20} 
+                    className={`text-primary-400 transition-transform ${
+                      activeSection === section.id ? 'rotate-90' : ''
+                    }`}
+                  />
+                </div>
+                
+                {activeSection === section.id && (
+                  <div className="mt-4 pl-12">
+                    <ul className="space-y-2">
+                      {section.details.map((detail, i) => (
+                        <li key={i} className="text-sm text-primary-200 flex items-center">
+                          <span className="w-1.5 h-1.5 bg-teal-400 rounded-full mr-2" />
+                          {detail}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </AnimatedText>
+          ))}
         </div>
       </div>
     </ScrollSection>
