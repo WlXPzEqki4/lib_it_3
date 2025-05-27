@@ -124,21 +124,28 @@ const TraffickerProfiles: React.FC = () => {
         />
         
         <ProfileCard 
-          name="Mahend Al-Iraqi"
+          name="Murtadha Al-Abbasi"
           origin="Iraq"
-          base="Libya, Italy"
+          base="Libya, Turkey"
           routes={[
-            "Libya-Italy sea crossing",
-            "Italy-Germany/EU onward transport"
+            "Turkey → Libya → Italy",
+            "Libya → Italy (Direct)",
+            "Italy → Northern Europe"
           ]}
           methods={[
-            "Provides car transport from Italian landing points",
-            "Creates forged Italian residence permits",
-            "Coordinates with other traffickers in Italy",
-            "Specializes in circumventing Dublin Regulation"
+            "Coordinates and executes ground operations",
+            "Organizes smuggler movements",
+            "Manages potential migrant movements",
+            "Supervises operation success",
+            "Right-hand man to Mustafa Berlin"
           ]}
-          fees="$12,000 for complete Italy-Germany package"
-          photoUrl="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=300"
+          fees="Part of Mustafa Berlin's network operations"
+          additionalInfo={[
+            "Mustafa Berlin's right-hand man",
+            "Coordinates and executes smuggling operations on the ground",
+            "Cooperates with Mustafa in organizing movements",
+            "Continuously supervises operations to ensure success"
+          ]}
           delay={400}
         />
       </div>
