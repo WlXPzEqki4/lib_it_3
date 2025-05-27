@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import { useInView } from 'react-intersection-observer';
 
@@ -21,12 +21,14 @@ interface NetworkVisualizationProps {
   nodes: Node[];
   edges: Edge[];
   className?: string;
+  onNodeClick?: (node: Node) => void;
 }
 
 const NetworkVisualization: React.FC<NetworkVisualizationProps> = ({
   nodes,
   edges,
-  className = ''
+  className = '',
+  onNodeClick
 }) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const { ref, inView } = useInView({
@@ -135,6 +137,8 @@ const NetworkVisualization: React.FC<NetworkVisualizationProps> = ({
       .attr('fill', d => getNodeColor(d.type))
       .attr('stroke', '#fff')
       .attr('stroke-width', 2)
+      .style('cursor', 'pointer')
+      .on('click', (event, d) => onNodeClick && onNodeClick(d))
       .call(drag(simulation) as any);
 
     // Add node labels
@@ -178,7 +182,7 @@ const NetworkVisualization: React.FC<NetworkVisualizationProps> = ({
     return () => {
       simulation.stop();
     };
-  }, [nodes, edges, inView]);
+  }, [nodes, edges, inView, onNodeClick]);
 
   // Drag functionality
   const drag = (simulation: d3.Simulation<d3.SimulationNodeDatum, undefined>) => {
