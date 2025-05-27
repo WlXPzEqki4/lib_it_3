@@ -10,7 +10,7 @@ const Introduction: React.FC = () => {
   const summaryData = [
     {
       id: 'network',
-      icon: <Network className="text-teal-400\" size={24} />,
+      icon: <Network className="text-teal-400" size={24} />,
       title: '"Mustafa Berlin" Centered Operation',
       content: 'Led by Mustafa Jalil Ibrahim (Mustafa Berlin), this sophisticated network operates across multiple countries, from Iraq through Turkey and Libya to various European destinations.',
       details: [
@@ -34,7 +34,7 @@ const Introduction: React.FC = () => {
     },
     {
       id: 'operations',
-      icon: <Map className="text-teal-400\" size={24} />,
+      icon: <Map className="text-teal-400" size={24} />,
       title: 'Operational Methods',
       content: 'Networks employ sophisticated methods for recruitment, transport, and border crossing, often at great risk to migrants.',
       details: [
@@ -58,7 +58,7 @@ const Introduction: React.FC = () => {
     },
     {
       id: 'risks',
-      icon: <AlertTriangle className="text-accent-400\" size={24} />,
+      icon: <AlertTriangle className="text-accent-400" size={24} />,
       title: 'Risk Factors',
       content: 'The journey presents severe risks to migrants, with multiple documented hazards and dangers.',
       details: [
@@ -94,13 +94,13 @@ const Introduction: React.FC = () => {
             <p className="mb-6">
               This investigative report provides detailed insights into sophisticated human smuggling operations facilitating irregular migration, with a primary focus on the perilous Libya-Italy maritime corridor—a critical entry point into Europe.
             </p>
-            <p>
+            <p className="mb-12">
               Through extensive fieldwork, including direct interviews with active smugglers, migrants, and victims, this research illuminates the intricate mechanics, key figures, and multi-stage pathways that define this illicit ecosystem.
             </p>
           </AnimatedText>
         </div>
         
-        <div className="space-y-4">
+        <div className="space-y-4 mt-12">
           <AnimatedText delay={800}>
             <h4 className="text-xl font-semibold text-white mb-6">Executive Summary</h4>
           </AnimatedText>
