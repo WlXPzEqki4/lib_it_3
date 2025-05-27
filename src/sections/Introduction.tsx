@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ScrollSection from '../components/ScrollSection';
 import AnimatedText from '../components/AnimatedText';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, Network, Users, Route, AlertTriangle, DollarSign, Map } from 'lucide-react';
+import { ChevronRight, Network, Users, Route, AlertTriangle, DollarSign, Map, AlertOctagon } from 'lucide-react';
 
 const Introduction: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -10,7 +10,7 @@ const Introduction: React.FC = () => {
   const summaryData = [
     {
       id: 'network',
-      icon: <Network className="text-teal-400\" size={24} />,
+      icon: <Network className="text-teal-400" size={24} />,
       title: '"Mustafa Berlin" Centered Operation',
       content: 'Led by Mustafa Jalil Ibrahim (Mustafa Berlin), this sophisticated network operates across multiple countries, from Iraq through Turkey and Libya to various European destinations.',
       details: [
@@ -34,7 +34,7 @@ const Introduction: React.FC = () => {
     },
     {
       id: 'operations',
-      icon: <Map className="text-teal-400\" size={24} />,
+      icon: <Map className="text-teal-400" size={24} />,
       title: 'Operational Methods',
       content: 'Networks employ sophisticated methods for recruitment, transport, and border crossing, often at great risk to migrants.',
       details: [
@@ -58,7 +58,7 @@ const Introduction: React.FC = () => {
     },
     {
       id: 'risks',
-      icon: <AlertTriangle className="text-accent-400\" size={24} />,
+      icon: <AlertTriangle className="text-accent-400" size={24} />,
       title: 'Risk Factors',
       content: 'The journey presents severe risks to migrants, with multiple documented hazards and dangers.',
       details: [
@@ -97,6 +97,18 @@ const Introduction: React.FC = () => {
             <p className="mb-12">
               Through extensive fieldwork, including direct interviews with active smugglers, migrants, and victims, this research illuminates the intricate mechanics, key figures, and multi-stage pathways that define this illicit ecosystem.
             </p>
+          </AnimatedText>
+
+          <AnimatedText delay={1400}>
+            <div className="bg-accent-900/30 border border-accent-800 rounded-lg p-6 mt-8">
+              <div className="flex items-start gap-3 mb-3">
+                <AlertOctagon size={24} className="text-accent-400 flex-shrink-0 mt-1" />
+                <h4 className="text-lg font-semibold text-white">Key Intelligence Finding</h4>
+              </div>
+              <p className="text-primary-200">
+                Italy – Convergence Point for Tiered Smuggling Operations. This report illuminates Italy's pivotal role as a convergence point where initial maritime smuggling operations, such as those managed by the 'Mustafa Berlin-centered' syndicate and 'Abu Al-Nour,' interface with distinct, specialized networks like that of 'Mahend Al-Iraqi.' These latter entities are dedicated to facilitating onward illicit travel deeper into Europe from Italian soil, utilizing established routes and methods including document forgery, thereby creating a multi-layered operational challenge within Italian jurisdiction.
+              </p>
+            </div>
           </AnimatedText>
         </div>
         
