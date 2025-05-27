@@ -1,7 +1,182 @@
 import React from 'react';
 import ScrollSection from '../components/ScrollSection';
 import AnimatedText from '../components/AnimatedText';
+import NetworkVisualization from '../components/NetworkVisualization';
 import { Network } from 'lucide-react';
+
+const nodes = [
+  {
+    "id": "mustafa_berlin",
+    "label": "Mustafa Berlin",
+    "type": "trafficker_kingpin",
+    "aka": "Mustafa Jalil Ibrahim",
+    "nationality": "Iraqi",
+    "current_location": "Germany",
+    "age": 32,
+    "region_of_origin": "Diyala, Iraq",
+    "phone": "+9647711013228",
+    "telegram_account_name": "كروب مصطفى برلين (Group Mustafa Berlin)",
+    "reputation": "One of the most dangerous smugglers in the region",
+    "operational_scope": "Iraq, Turkey, Libya, Italy, France, Britain, Germany (Sea & Land)"
+  },
+  {
+    "id": "murtadha_al_abbasi",
+    "label": "Murtadha Al-Abbasi",
+    "type": "trafficker_assistant",
+    "phone": "+9647709881322",
+    "role_description": "Right-hand man; coordinates & executes ground operations; organizes movements; supervises operations"
+  },
+  {
+    "id": "ziad_al_iraqi",
+    "label": "Ziad Al-Iraqi",
+    "type": "trafficker_assistant",
+    "phone": "+9647736686831",
+    "role_description": "Assistant under Mustafa's supervision; professional staff for organizing & facilitating border crossings; coordinates logistical movements"
+  },
+  {
+    "id": "mustafa_berlin_network",
+    "label": "Mustafa Berlin's Network",
+    "type": "criminal_organization",
+    "characteristics": "Large, diverse, transports individuals across several countries worldwide, operates in complete secrecy, uses advanced methods & modern technologies to circumvent surveillance, dangerous, extensive, aims for huge profits at the expense of human lives."
+  },
+  {
+    "id": "migrants_general",
+    "label": "Illegal Migrants",
+    "type": "victim_exploited_group",
+    "description": "Transported under dangerous conditions by Mustafa Berlin's network."
+  },
+  {
+    "id": "iraq",
+    "label": "Iraq",
+    "type": "location_country_origin",
+    "role": "Origin point of network operations & Mustafa Berlin"
+  },
+  {
+    "id": "turkey",
+    "label": "Turkey",
+    "type": "location_country_transit",
+    "role": "Transit country for network"
+  },
+  {
+    "id": "libya",
+    "label": "Libya",
+    "type": "location_country_transit_embarkation",
+    "role": "Transit and primary embarkation country for Europe"
+  },
+  {
+    "id": "italy",
+    "label": "Italy",
+    "type": "location_country_destination_transit",
+    "role": "Initial European destination/arrival point & transit country"
+  },
+  {
+    "id": "france",
+    "label": "France",
+    "type": "location_country_destination_transit",
+    "role": "European destination/transit country"
+  },
+  {
+    "id": "britain",
+    "label": "Britain",
+    "type": "location_country_destination",
+    "role": "European destination country"
+  },
+  {
+    "id": "germany",
+    "label": "Germany",
+    "type": "location_country_destination",
+    "role": "European destination country; Mustafa Berlin's current location"
+  }
+];
+
+const edges = [
+  {
+    "source": "mustafa_berlin",
+    "target": "murtadha_al_abbasi",
+    "label": "Manages",
+    "relationship_type": "hierarchical_command",
+    "details": "Murtadha is Mustafa's right-hand man"
+  },
+  {
+    "source": "mustafa_berlin",
+    "target": "ziad_al_iraqi",
+    "label": "Manages",
+    "relationship_type": "hierarchical_command",
+    "details": "Ziad works under Mustafa's supervision"
+  },
+  {
+    "source": "mustafa_berlin",
+    "target": "mustafa_berlin_network",
+    "label": "Leads",
+    "relationship_type": "leadership"
+  },
+  {
+    "source": "murtadha_al_abbasi",
+    "target": "mustafa_berlin_network",
+    "label": "Operates",
+    "relationship_type": "operational_involvement"
+  },
+  {
+    "source": "ziad_al_iraqi",
+    "target": "mustafa_berlin_network",
+    "label": "Operates",
+    "relationship_type": "operational_involvement"
+  },
+  {
+    "source": "mustafa_berlin_network",
+    "target": "migrants_general",
+    "label": "Exploits",
+    "relationship_type": "criminal_activity_victimization"
+  },
+  {
+    "source": "mustafa_berlin_network",
+    "target": "iraq",
+    "label": "Originates",
+    "relationship_type": "geographical_operation_link"
+  },
+  {
+    "source": "mustafa_berlin_network",
+    "target": "turkey",
+    "label": "Transit",
+    "relationship_type": "geographical_operation_link"
+  },
+  {
+    "source": "mustafa_berlin_network",
+    "target": "libya",
+    "label": "Transit",
+    "relationship_type": "geographical_operation_link"
+  },
+  {
+    "source": "mustafa_berlin_network",
+    "target": "italy",
+    "label": "Destination",
+    "relationship_type": "geographical_operation_link"
+  },
+  {
+    "source": "mustafa_berlin_network",
+    "target": "france",
+    "label": "Destination",
+    "relationship_type": "geographical_operation_link"
+  },
+  {
+    "source": "mustafa_berlin_network",
+    "target": "britain",
+    "label": "Destination",
+    "relationship_type": "geographical_operation_link"
+  },
+  {
+    "source": "mustafa_berlin_network",
+    "target": "germany",
+    "label": "Destination",
+    "relationship_type": "geographical_operation_link"
+  },
+  {
+    "source": "mustafa_berlin",
+    "target": "germany",
+    "label": "Located In",
+    "relationship_type": "personal_location"
+  }
+];
 
 const NetworkAnalysis: React.FC = () => {
   return (
@@ -25,8 +200,66 @@ const NetworkAnalysis: React.FC = () => {
             <h3 className="text-xl font-semibold text-white">Trafficking Network Structure</h3>
           </div>
           
-          <div className="h-[600px] bg-primary-700/50 rounded-lg">
-            {/* Network visualization will be added here */}
+          <div className="h-[600px] bg-primary-700/50 rounded-lg overflow-hidden">
+            <NetworkVisualization nodes={nodes} edges={edges} />
+          </div>
+
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-primary-700/50 p-6 rounded-lg">
+              <h4 className="text-lg font-semibold text-white mb-4">Network Legend</h4>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-4 h-4 rounded-full bg-[#ff3333]"></div>
+                  <span className="text-primary-200">Kingpin</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-4 h-4 rounded-full bg-[#ff5c5c]"></div>
+                  <span className="text-primary-200">Assistant</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-4 h-4 rounded-full bg-[#b30000]"></div>
+                  <span className="text-primary-200">Criminal Organization</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-4 h-4 rounded-full bg-[#27ab83]"></div>
+                  <span className="text-primary-200">Victims</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-4 h-4 rounded-full bg-[#3ebd93]"></div>
+                  <span className="text-primary-200">Origin Country</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-4 h-4 rounded-full bg-[#65d6ad]"></div>
+                  <span className="text-primary-200">Transit Country</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-4 h-4 rounded-full bg-[#8eedc7]"></div>
+                  <span className="text-primary-200">Destination Country</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-primary-700/50 p-6 rounded-lg">
+              <h4 className="text-lg font-semibold text-white mb-4">Network Insights</h4>
+              <ul className="space-y-3 text-primary-200">
+                <li className="flex items-start gap-2">
+                  <span className="text-teal-400">•</span>
+                  <span>Hierarchical structure with clear command chain</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-teal-400">•</span>
+                  <span>Multiple transit countries for risk distribution</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-teal-400">•</span>
+                  <span>Complex web of destination countries</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-teal-400">•</span>
+                  <span>Strategic positioning of key personnel</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
