@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, User, DollarSign, Route, AlertTriangle, Users, Phone, ChevronDown, ChevronUp, Passport, Calendar, Info } from 'lucide-react';
+import { MapPin, User, DollarSign, Route, AlertTriangle, Users, Phone, ChevronDown, ChevronUp, Import as Passport, Calendar, Info } from 'lucide-react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 
 interface Associate {
