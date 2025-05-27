@@ -54,6 +54,7 @@ const AnimatedMap: React.FC<AnimatedMapProps> = ({
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
   const markersRef = useRef<mapboxgl.Marker[]>([]);
+  const routeLayersRef = useRef<string[]>([]);
   const { ref, inView } = useInView({
     threshold: 0.2,
     triggerOnce: true,
@@ -79,6 +80,70 @@ const AnimatedMap: React.FC<AnimatedMapProps> = ({
     `;
   };
 
+  // Clean up previous routes
+  const cleanupRoutes = () => {
+    if (map.current) {
+      routeLayersRef.current.forEach(layerId => {
+        if (map.current?.getLayer(layerId)) {
+          map.current.removeLayer(layerId);
+        }
+        if (map.current?.getSource(layerId)) {
+          map.current.removeSource(layerId);
+        }
+      });
+      routeLayersRef.current = [];
+    }
+  };
+
+  // Add new route with animation
+  const addRoute = (route: typeof routes[0], delay: number = 0) => {
+    if (!map.current) return;
+
+    const coordinates = route.points.map(point => [point.x, point.y]);
+    const sourceId = `route-${route.id}`;
+    const layerId = `line-${route.id}`;
+
+    // Add source
+    map.current.addSource(sourceId, {
+      type: 'geojson',
+      data: {
+        type: 'Feature',
+        properties: {},
+        geometry: {
+          type: 'LineString',
+          coordinates: coordinates
+        }
+      }
+    });
+
+    // Add line layer
+    map.current.addLayer({
+      id: layerId,
+      type: 'line',
+      source: sourceId,
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round'
+      },
+      paint: {
+        'line-color': route.color,
+        'line-width': route.highlight ? 3 : 2,
+        'line-opacity': 0,
+        'line-dasharray': [0, 4]
+      }
+    });
+
+    routeLayersRef.current.push(layerId);
+
+    // Animate the line
+    setTimeout(() => {
+      if (map.current) {
+        map.current.setPaintProperty(layerId, 'line-opacity', 1);
+        map.current.setPaintProperty(layerId, 'line-dasharray', [0, 0]);
+      }
+    }, delay);
+  };
+
   useEffect(() => {
     if (!map.current && mapContainer.current) {
       map.current = new mapboxgl.Map({
@@ -92,39 +157,13 @@ const AnimatedMap: React.FC<AnimatedMapProps> = ({
       map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
       map.current.on('load', () => {
+        // Add routes with delays
         routes.forEach((route, index) => {
-          const coordinates = route.points.map(point => [point.x, point.y]);
-          
-          if (map.current) {
-            map.current.addSource(`route-${route.id}`, {
-              type: 'geojson',
-              data: {
-                type: 'Feature',
-                properties: {},
-                geometry: {
-                  type: 'LineString',
-                  coordinates: coordinates
-                }
-              }
-            });
-
-            map.current.addLayer({
-              id: `route-${route.id}`,
-              type: 'line',
-              source: `route-${route.id}`,
-              layout: {
-                'line-join': 'round',
-                'line-cap': 'round'
-              },
-              paint: {
-                'line-color': route.color,
-                'line-width': route.highlight ? 3 : 2,
-                'line-opacity': 0.8
-              }
-            });
-          }
+          const delay = (route.delay || index * 0.5) * 1000;
+          addRoute(route, delay);
         });
 
+        // Add markers
         locations.forEach(location => {
           const popup = new mapboxgl.Popup({
             offset: 25,
@@ -156,12 +195,13 @@ const AnimatedMap: React.FC<AnimatedMapProps> = ({
 
     return () => {
       markersRef.current.forEach(marker => marker.remove());
+      cleanupRoutes();
       if (map.current) {
         map.current.remove();
         map.current = null;
       }
     };
-  }, []);
+  }, [routes, locations]);
 
   useEffect(() => {
     if (inView && map.current) {
@@ -171,7 +211,7 @@ const AnimatedMap: React.FC<AnimatedMapProps> = ({
         duration: 1500
       });
     }
-  }, [inView]);
+  }, [inView, center, zoom]);
 
   return (
     <div ref={ref} className={`relative overflow-hidden ${className}`}>
