@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, User, DollarSign, Route, AlertTriangle, Users, Phone, ChevronDown, ChevronUp, Import as Passport, Calendar, Info, Settings } from 'lucide-react';
+import { MapPin, User, DollarSign, Route, AlertTriangle, Users, Phone, ChevronDown, ChevronUp, Import as Passport, Calendar, Info, Settings, Camera } from 'lucide-react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 
 interface Associate {
   name: string;
   role: string;
   contact?: string;
+}
+
+interface Photo {
+  url: string;
+  description: string;
 }
 
 interface Document {
@@ -16,6 +21,7 @@ interface Document {
   expiryDate: string;
   issuingAuthority: string;
   details?: Record<string, string>;
+  image?: string;
 }
 
 interface ProfileCardProps {
@@ -32,6 +38,7 @@ interface ProfileCardProps {
   documents?: Document[];
   additionalInfo?: string[];
   photoUrl?: string;
+  photos?: Photo[];
   delay?: number;
 }
 
@@ -49,6 +56,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   documents,
   additionalInfo,
   photoUrl,
+  photos,
   delay = 0
 }) => {
   const { ref, isVisible } = useScrollAnimation({
@@ -61,6 +69,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   const [showAdditionalInfo, setShowAdditionalInfo] = useState(false);
   const [showAssociates, setShowAssociates] = useState(false);
   const [showMethods, setShowMethods] = useState(false);
+  const [showPhotos, setShowPhotos] = useState(false);
 
   return (
     <motion.div
@@ -168,9 +177,18 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
               </button>
               
               {showDocuments && (
-                <div className="mt-3 space-y-3">
+                <div className="mt-3 space-y-4">
                   {documents.map((doc, index) => (
                     <div key={index} className="bg-primary-700/50 rounded-md p-3">
+                      {doc.image && (
+                        <div className="mb-3">
+                          <img 
+                            src={doc.image} 
+                            alt={doc.type}
+                            className="w-full rounded-md"
+                          />
+                        </div>
+                      )}
                       <p className="text-primary-100 font-medium mb-2">{doc.type}</p>
                       <div className="space-y-1 text-xs">
                         <p className="text-primary-300">Number: {doc.number}</p>
@@ -237,6 +255,36 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
                 <div className="mt-3 space-y-2">
                   {additionalInfo.map((info, index) => (
                     <p key={index} className="text-primary-300 text-sm">{info}</p>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {photos && photos.length > 0 && (
+            <div className="pt-4 border-t border-primary-700">
+              <button
+                onClick={() => setShowPhotos(!showPhotos)}
+                className="flex items-center justify-between w-full text-left text-primary-200 hover:text-white transition-colors"
+              >
+                <div className="flex items-center">
+                  <Camera size={18} className="text-teal-400 mr-2" />
+                  <span className="font-medium">Known Photos</span>
+                </div>
+                {showPhotos ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+              </button>
+              
+              {showPhotos && (
+                <div className="mt-3 space-y-3">
+                  {photos.map((photo, index) => (
+                    <div key={index} className="bg-primary-700/50 rounded-md overflow-hidden">
+                      <img 
+                        src={photo.url} 
+                        alt={photo.description}
+                        className="w-full rounded-md"
+                      />
+                      <p className="text-sm text-primary-300 p-2">{photo.description}</p>
+                    </div>
                   ))}
                 </div>
               )}
