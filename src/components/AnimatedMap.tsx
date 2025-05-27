@@ -54,7 +54,7 @@ const AnimatedMap: React.FC<AnimatedMapProps> = ({
       style: 'mapbox://styles/mapbox/dark-v11',
       center: center,
       zoom: zoom,
-      interactive: false
+      interactive: true // Enable map interaction
     });
 
     map.current.on('load', () => {
@@ -71,7 +71,7 @@ const AnimatedMap: React.FC<AnimatedMapProps> = ({
             properties: {},
             geometry: {
               type: 'LineString',
-              coordinates: coordinates as [number, number][]
+              coordinates: coordinates
             }
           }
         });
@@ -103,16 +103,28 @@ const AnimatedMap: React.FC<AnimatedMapProps> = ({
 
       // Add location markers
       locations.forEach((location, index) => {
-        const marker = document.createElement('div');
-        marker.className = `w-4 h-4 rounded-full ${location.highlight ? 'bg-red-500' : 'bg-teal-500'} opacity-0`;
+        // Create a custom marker element
+        const markerEl = document.createElement('div');
+        markerEl.className = 'marker';
+        markerEl.style.width = '16px';
+        markerEl.style.height = '16px';
+        markerEl.style.borderRadius = '50%';
+        markerEl.style.backgroundColor = location.highlight ? '#ff3333' : '#27ab83';
+        markerEl.style.border = '2px solid white';
+        markerEl.style.opacity = '0';
+        markerEl.style.cursor = 'pointer';
         
-        new mapboxgl.Marker(marker)
+        // Create and add the marker
+        const marker = new mapboxgl.Marker(markerEl)
           .setLngLat([location.x, location.y])
-          .setPopup(new mapboxgl.Popup({ offset: 25 }).setText(location.label))
-          .addTo(map.current!);
+          .setPopup(
+            new mapboxgl.Popup({ offset: 25, closeButton: false })
+              .setHTML(`<div class="text-sm font-medium">${location.label}</div>`)
+          )
+          .addTo(map.current);
 
         if (inView) {
-          gsap.to(marker, {
+          gsap.to(markerEl, {
             opacity: 0.8,
             duration: 0.5,
             delay: (location.delay || index * 0.3) + 0.5,
@@ -120,6 +132,9 @@ const AnimatedMap: React.FC<AnimatedMapProps> = ({
           });
         }
       });
+
+      // Add navigation controls
+      map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
     });
 
     return () => {
