@@ -2,6 +2,7 @@ import React from 'react';
 import ScrollSection from '../components/ScrollSection';
 import AnimatedText from '../components/AnimatedText';
 import ProfileCard from '../components/ProfileCard';
+import { User } from 'lucide-react';
 
 const TraffickerProfiles: React.FC = () => {
   return (
@@ -63,8 +64,7 @@ const TraffickerProfiles: React.FC = () => {
                 "Place of Birth": "Iraq - Diyala",
                 "Mother's Name": "Hakeemah Kareem",
                 "Father's Name": "Ibrahim"
-              },
-              photoUrl: "/images/mustafa-passport.jpg"
+              }
             },
             {
               type: "Turkish Tourist Visa",
@@ -75,8 +75,7 @@ const TraffickerProfiles: React.FC = () => {
               details: {
                 "Duration": "30 days",
                 "Type": "Tourism"
-              },
-              photoUrl: "/images/mustafa-visa.jpg"
+              }
             }
           ]}
           additionalInfo={[
@@ -89,7 +88,6 @@ const TraffickerProfiles: React.FC = () => {
           ]}
           fees="€4,000-€5,000 for Italy segment"
           dangerLevel="High-Risk Individual"
-          photoUrl="/images/mustafa-casual.jpg"
           delay={0}
         />
         
