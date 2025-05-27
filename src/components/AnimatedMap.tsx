@@ -54,7 +54,8 @@ const AnimatedMap: React.FC<AnimatedMapProps> = ({
       style: 'mapbox://styles/mapbox/dark-v11',
       center: center,
       zoom: zoom,
-      interactive: true // Enable map interaction
+      interactive: true,
+      attributionControl: false
     });
 
     map.current.on('load', () => {
@@ -86,51 +87,71 @@ const AnimatedMap: React.FC<AnimatedMapProps> = ({
           },
           paint: {
             'line-color': route.color,
-            'line-width': route.highlight ? 3 : 2,
+            'line-width': route.highlight ? 4 : 3,
             'line-opacity': 0
           }
         });
 
         if (inView) {
-          gsap.to(map.current?.getPaintProperty(`route-${route.id}`, 'line-opacity'), {
-            value: 0.8,
-            duration: 1.5,
-            delay: route.delay || index * 0.3,
-            ease: 'power2.inOut'
-          });
+          gsap.to(
+            {},
+            {
+              duration: 1.5,
+              delay: route.delay || index * 0.3,
+              onStart: () => {
+                map.current?.setPaintProperty(`route-${route.id}`, 'line-opacity', 0.8);
+              }
+            }
+          );
         }
       });
 
       // Add location markers
       locations.forEach((location, index) => {
-        // Create a custom marker element
-        const markerEl = document.createElement('div');
-        markerEl.className = 'marker';
-        markerEl.style.width = '16px';
-        markerEl.style.height = '16px';
-        markerEl.style.borderRadius = '50%';
-        markerEl.style.backgroundColor = location.highlight ? '#ff3333' : '#27ab83';
-        markerEl.style.border = '2px solid white';
-        markerEl.style.opacity = '0';
-        markerEl.style.cursor = 'pointer';
-        
-        // Create and add the marker
-        const marker = new mapboxgl.Marker(markerEl)
+        const el = document.createElement('div');
+        el.className = `marker-${location.id}`;
+        el.style.width = location.highlight ? '20px' : '16px';
+        el.style.height = location.highlight ? '20px' : '16px';
+        el.style.borderRadius = '50%';
+        el.style.backgroundColor = location.highlight ? '#ff3333' : '#27ab83';
+        el.style.border = '3px solid rgba(255, 255, 255, 0.8)';
+        el.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.3)';
+        el.style.cursor = 'pointer';
+        el.style.opacity = '0';
+
+        const popup = new mapboxgl.Popup({
+          closeButton: false,
+          closeOnClick: false,
+          offset: 25,
+          className: 'custom-popup'
+        })
+        .setHTML(`
+          <div class="bg-gray-900 text-white px-3 py-2 rounded-lg shadow-lg">
+            <p class="font-medium">${location.label}</p>
+          </div>
+        `);
+
+        const marker = new mapboxgl.Marker(el)
           .setLngLat([location.x, location.y])
-          .setPopup(
-            new mapboxgl.Popup({ offset: 25, closeButton: false })
-              .setHTML(`<div class="text-sm font-medium">${location.label}</div>`)
-          )
-          .addTo(map.current);
+          .setPopup(popup)
+          .addTo(map.current!);
 
         if (inView) {
-          gsap.to(markerEl, {
-            opacity: 0.8,
+          gsap.to(el, {
+            opacity: 1,
             duration: 0.5,
             delay: (location.delay || index * 0.3) + 0.5,
             ease: 'back.out(1.7)'
           });
         }
+
+        el.addEventListener('mouseenter', () => {
+          popup.addTo(map.current!);
+        });
+
+        el.addEventListener('mouseleave', () => {
+          popup.remove();
+        });
       });
 
       // Add navigation controls
@@ -145,6 +166,17 @@ const AnimatedMap: React.FC<AnimatedMapProps> = ({
   return (
     <div ref={ref} className={`relative overflow-hidden rounded-lg ${className}`}>
       <div ref={mapContainer} className="w-full h-full" />
+      <style jsx>{`
+        .mapboxgl-popup-content {
+          background: transparent;
+          padding: 0;
+          border-radius: 8px;
+          box-shadow: none;
+        }
+        .mapboxgl-popup-tip {
+          display: none;
+        }
+      `}</style>
     </div>
   );
 };

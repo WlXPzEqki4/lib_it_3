@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.mapboxgl-ctrl-logo {
+  display: none !important;
+}
+
+.mapboxgl-ctrl-bottom-right {
+  display: none !important;
+}
+
+.mapboxgl-popup {
+  z-index: 50;
+}
+
+.custom-popup .mapboxgl-popup-content {
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+}
