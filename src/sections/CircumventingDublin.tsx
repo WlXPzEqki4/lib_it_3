@@ -19,7 +19,7 @@ const CircumventingDublin: React.FC = () => {
       </AnimatedText>
       
       <div className="max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-16">
           <AnimatedText delay={400} className="order-2 md:order-1">
             <div className="bg-primary-700/80 backdrop-blur-sm rounded-lg overflow-hidden shadow-lg border border-primary-600">
               <div className="p-3 bg-primary-600 text-white font-medium flex items-center">
@@ -39,9 +39,21 @@ const CircumventingDublin: React.FC = () => {
                   <p className="text-sm text-primary-300 mb-1">Purpose</p>
                   <p className="text-white font-medium">Circumventing Dublin Regulation</p>
                 </div>
-                <div>
+                <div className="border-b border-primary-600 pb-3">
                   <p className="text-sm text-primary-300 mb-1">Cost</p>
                   <p className="text-white font-medium">€2,500-€4,000</p>
+                </div>
+                <div className="grid grid-cols-1 gap-4">
+                  <img 
+                    src="/images/permit-front.jpg" 
+                    alt="Forged Italian Residence Permit - Front"
+                    className="w-full rounded-lg"
+                  />
+                  <img 
+                    src="/images/permit-uv.jpg" 
+                    alt="Forged Italian Residence Permit - UV Security Features"
+                    className="w-full rounded-lg"
+                  />
                 </div>
               </div>
             </div>
