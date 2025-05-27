@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, User, DollarSign, Route, AlertTriangle, Users, Phone, ChevronDown, ChevronUp, Import as Passport, Calendar, Info } from 'lucide-react';
+import { MapPin, User, DollarSign, Route, AlertTriangle, Users, Phone, ChevronDown, ChevronUp, Import as Passport, Calendar, Info, Settings } from 'lucide-react';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 
 interface Associate {
@@ -59,6 +59,8 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
 
   const [showDocuments, setShowDocuments] = useState(false);
   const [showAdditionalInfo, setShowAdditionalInfo] = useState(false);
+  const [showAssociates, setShowAssociates] = useState(false);
+  const [showMethods, setShowMethods] = useState(false);
 
   return (
     <motion.div
@@ -129,6 +131,29 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
             <p className="text-primary-200">Fees: {fees}</p>
           </div>
 
+          <div className="pt-4 border-t border-primary-700">
+            <button
+              onClick={() => setShowMethods(!showMethods)}
+              className="flex items-center justify-between w-full text-left text-primary-200 hover:text-white transition-colors"
+            >
+              <div className="flex items-center">
+                <Settings size={18} className="text-teal-400 mr-2" />
+                <span className="font-medium">Methods</span>
+              </div>
+              {showMethods ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+            </button>
+            
+            {showMethods && (
+              <div className="mt-3">
+                <ul className="list-disc pl-4 text-primary-300 space-y-2">
+                  {methods.map((method, index) => (
+                    <li key={index}>{method}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+
           {documents && documents.length > 0 && (
             <div className="pt-4 border-t border-primary-700">
               <button
@@ -165,26 +190,33 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
 
           {associates && associates.length > 0 && (
             <div className="pt-4 border-t border-primary-700">
-              <div className="flex items-start">
-                <Users size={18} className="text-teal-400 mr-2 mt-0.5 flex-shrink-0" />
-                <div>
-                  <p className="text-primary-200 font-medium mb-2">Known Associates:</p>
-                  <div className="space-y-3">
-                    {associates.map((associate, index) => (
-                      <div key={index} className="bg-primary-700/50 rounded-md p-2">
-                        <p className="text-primary-100 font-medium">{associate.name}</p>
-                        <p className="text-primary-300 text-sm">{associate.role}</p>
-                        {associate.contact && (
-                          <div className="flex items-center mt-1 text-primary-400">
-                            <Phone size={14} className="mr-1" />
-                            <span className="text-xs">{associate.contact}</span>
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
+              <button
+                onClick={() => setShowAssociates(!showAssociates)}
+                className="flex items-center justify-between w-full text-left text-primary-200 hover:text-white transition-colors"
+              >
+                <div className="flex items-center">
+                  <Users size={18} className="text-teal-400 mr-2" />
+                  <span className="font-medium">Known Associates</span>
                 </div>
-              </div>
+                {showAssociates ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+              </button>
+              
+              {showAssociates && (
+                <div className="mt-3 space-y-3">
+                  {associates.map((associate, index) => (
+                    <div key={index} className="bg-primary-700/50 rounded-md p-2">
+                      <p className="text-primary-100 font-medium">{associate.name}</p>
+                      <p className="text-primary-300 text-sm">{associate.role}</p>
+                      {associate.contact && (
+                        <div className="flex items-center mt-1 text-primary-400">
+                          <Phone size={14} className="mr-1" />
+                          <span className="text-xs">{associate.contact}</span>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
 
@@ -210,15 +242,6 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
               )}
             </div>
           )}
-
-          <div className="pt-4 border-t border-primary-700">
-            <p className="text-primary-200 font-medium mb-2">Methods:</p>
-            <ul className="list-disc pl-4 text-primary-300">
-              {methods.map((method, index) => (
-                <li key={index}>{method}</li>
-              ))}
-            </ul>
-          </div>
         </div>
       </div>
     </motion.div>
