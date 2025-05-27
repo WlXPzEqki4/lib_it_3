@@ -64,7 +64,8 @@ const TraffickerProfiles: React.FC = () => {
                 "Place of Birth": "Iraq - Diyala",
                 "Mother's Name": "Hakeemah Kareem",
                 "Father's Name": "Ibrahim"
-              }
+              },
+              image: "/images/mustafa-passport.jpg"
             },
             {
               type: "Turkish Tourist Visa",
@@ -75,7 +76,14 @@ const TraffickerProfiles: React.FC = () => {
               details: {
                 "Duration": "30 days",
                 "Type": "Tourism"
-              }
+              },
+              image: "/images/mustafa-visa.jpg"
+            }
+          ]}
+          photos={[
+            {
+              url: "/images/mustafa-casual.jpg",
+              description: "Casual photo of Mustafa Berlin"
             }
           ]}
           additionalInfo={[
