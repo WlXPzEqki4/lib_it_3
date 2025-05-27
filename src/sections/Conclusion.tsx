@@ -73,17 +73,7 @@ const Conclusion: React.FC = () => {
           </div>
         </div>
         
-        <AnimatedText delay={1200}>
-          <div className="bg-primary-700/70 backdrop-blur-sm rounded-lg p-8 border-t-4 border-teal-500">
-            <h3 className="text-xl font-semibold text-white mb-4">The Human Element</h3>
-            <p className="text-primary-200 mb-4">
-              Behind the statistics and routes lies a profound human reality. Each crossing represents individuals and families making desperate decisions in search of safety, opportunity, or reunion. The journeys to and through Italy often involve traumatic experiences, financial exploitation, and profound uncertainty.
-            </p>
-            <p className="text-primary-200">
-              As smuggling networks continue to adapt, and migrants continue to risk their lives to reach Italian shores, the challenges for Italy and the broader European community remain complex and enduring. The networks detailed in this report demonstrate not only the ingenuity of human smugglers but also the limitations of current approaches to managing irregular migration in the Mediterranean.
-            </p>
-          </div>
-        </AnimatedText>
+        
       </div>
     </ScrollSection>
   );
