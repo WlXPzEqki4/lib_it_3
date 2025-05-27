@@ -47,7 +47,7 @@ const AnimatedMap: React.FC<AnimatedMapProps> = ({
   useEffect(() => {
     if (!mapContainer.current) return;
 
-    mapboxgl.accessToken = 'pk.eyJ1IjoiYm9sdGRldiIsImEiOiJjbHM0Z3F5NWowMjd0MmptbGVpcWRiemJ0In0.OwqRjhKnxQE-SXrPVV-Bww';
+    mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN;
     
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
