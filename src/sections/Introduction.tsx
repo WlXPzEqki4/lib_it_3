@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ScrollSection from '../components/ScrollSection';
 import AnimatedText from '../components/AnimatedText';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, Network, Users, Route, AlertTriangle, DollarSign, Map } from 'lucide-react';
 
 const Introduction: React.FC = () => {
@@ -9,7 +10,7 @@ const Introduction: React.FC = () => {
   const summaryData = [
     {
       id: 'network',
-      icon: <Network className="text-teal-400\" size={24} />,
+      icon: <Network className="text-teal-400" size={24} />,
       title: '"Mustafa Berlin" Centered Operation',
       content: 'Led by Mustafa Jalil Ibrahim (Mustafa Berlin), this sophisticated network operates across multiple countries, from Iraq through Turkey and Libya to various European destinations.',
       details: [
@@ -33,7 +34,7 @@ const Introduction: React.FC = () => {
     },
     {
       id: 'operations',
-      icon: <Map className="text-teal-400\" size={24} />,
+      icon: <Map className="text-teal-400" size={24} />,
       title: 'Operational Methods',
       content: 'Networks employ sophisticated methods for recruitment, transport, and border crossing, often at great risk to migrants.',
       details: [
@@ -57,7 +58,7 @@ const Introduction: React.FC = () => {
     },
     {
       id: 'risks',
-      icon: <AlertTriangle className="text-accent-400\" size={24} />,
+      icon: <AlertTriangle className="text-accent-400" size={24} />,
       title: 'Risk Factors',
       content: 'The journey presents severe risks to migrants, with multiple documented hazards and dangers.',
       details: [
@@ -106,13 +107,16 @@ const Introduction: React.FC = () => {
           
           {summaryData.map((section, index) => (
             <AnimatedText key={section.id} delay={1000 + (index * 200)}>
-              <div 
-                className={`bg-primary-800/60 backdrop-blur-sm rounded-lg transition-all duration-300 ${
-                  activeSection === section.id ? 'p-6' : 'p-4'
-                }`}
+              <motion.div 
+                className="bg-primary-800/60 backdrop-blur-sm rounded-lg overflow-hidden"
+                initial={false}
+                animate={{
+                  height: activeSection === section.id ? 'auto' : 'auto',
+                  transition: { duration: 0.3, ease: 'easeInOut' }
+                }}
               >
                 <div 
-                  className="flex items-center cursor-pointer"
+                  className="p-4 flex items-center cursor-pointer"
                   onClick={() => setActiveSection(activeSection === section.id ? null : section.id)}
                 >
                   <div className="mr-4">{section.icon}</div>
@@ -120,27 +124,69 @@ const Introduction: React.FC = () => {
                     <h5 className="font-semibold text-white">{section.title}</h5>
                     <p className="text-sm text-primary-200 mt-1">{section.content}</p>
                   </div>
-                  <ChevronRight 
-                    size={20} 
-                    className={`text-primary-400 transition-transform ${
-                      activeSection === section.id ? 'rotate-90' : ''
-                    }`}
-                  />
+                  <motion.div
+                    animate={{ rotate: activeSection === section.id ? 90 : 0 }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                  >
+                    <ChevronRight size={20} className="text-primary-400" />
+                  </motion.div>
                 </div>
                 
-                {activeSection === section.id && (
-                  <div className="mt-4 pl-12">
-                    <ul className="space-y-2">
-                      {section.details.map((detail, i) => (
-                        <li key={i} className="text-sm text-primary-200 flex items-center">
-                          <span className="w-1.5 h-1.5 bg-teal-400 rounded-full mr-2" />
-                          {detail}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
+                <AnimatePresence>
+                  {activeSection === section.id && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ 
+                        opacity: 1, 
+                        height: 'auto',
+                        transition: { 
+                          opacity: { duration: 0.3, delay: 0.1 },
+                          height: { duration: 0.3 }
+                        }
+                      }}
+                      exit={{ 
+                        opacity: 0, 
+                        height: 0,
+                        transition: { 
+                          opacity: { duration: 0.2 },
+                          height: { duration: 0.3 }
+                        }
+                      }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-4 pb-4 pl-12">
+                        <motion.ul className="space-y-2">
+                          {section.details.map((detail, i) => (
+                            <motion.li
+                              key={i}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ 
+                                opacity: 1, 
+                                x: 0,
+                                transition: { 
+                                  delay: i * 0.1 + 0.2,
+                                  duration: 0.3
+                                }
+                              }}
+                              exit={{ 
+                                opacity: 0, 
+                                x: -10,
+                                transition: { 
+                                  duration: 0.2
+                                }
+                              }}
+                              className="text-sm text-primary-200 flex items-center"
+                            >
+                              <span className="w-1.5 h-1.5 bg-teal-400 rounded-full mr-2" />
+                              {detail}
+                            </motion.li>
+                          ))}
+                        </motion.ul>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             </AnimatedText>
           ))}
         </div>
