@@ -141,27 +141,30 @@ const WiderWeb: React.FC = () => {
             />
             
             <ProfileCard 
-              name="Murtadha Al-Abbasi"
+              name="Mahend Al-Iraqi"
+              realName="Mahend Abdul Majid"
               origin="Iraq"
-              base="Libya, Turkey"
+              base="Turkey, Italy"
               routes={[
-                "Turkey → Libya → Italy",
-                "Libya → Italy (Direct)",
-                "Italy → Northern Europe"
+                "Libya → Italy",
+                "Iraq → UK",
+                "Iraq → Germany",
+                "Belarus/Italy → EU Countries"
               ]}
               methods={[
-                "Coordinates and executes ground operations",
-                "Organizes smuggler movements",
-                "Manages potential migrant movements",
-                "Supervises operation success",
-                "Right-hand man to Mustafa Berlin"
+                "Operates in complete secrecy",
+                "Uses advanced surveillance bypass methods",
+                "Provides car transport services",
+                "Creates forged residence permits",
+                "Coordinates with local driver networks"
               ]}
-              fees="Part of Mustafa Berlin's network operations"
+              fees="€2,500-€12,000 depending on route"
               additionalInfo={[
-                "Mustafa Berlin's right-hand man",
-                "Coordinates and executes smuggling operations on the ground",
-                "Cooperates with Mustafa in organizing movements",
-                "Continuously supervises operations to ensure success"
+                "Manages vast and diverse trafficking network",
+                "Family-based operation with brother and cousin",
+                "Specializes in onward EU movement",
+                "One of the most dangerous networks",
+                "Operates with high technological sophistication"
               ]}
               delay={400}
             />
