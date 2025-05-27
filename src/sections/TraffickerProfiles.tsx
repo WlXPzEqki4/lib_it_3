@@ -52,8 +52,41 @@ const TraffickerProfiles: React.FC = () => {
               contact: "+9647736686831"
             }
           ]}
+          documents={[
+            {
+              type: "Iraqi Passport",
+              number: "A15424553",
+              issueDate: "2019-05-14",
+              expiryDate: "2027-05-13",
+              issuingAuthority: "Diali",
+              details: {
+                "Place of Birth": "Iraq - Diyala",
+                "Mother's Name": "Hakeemah Kareem",
+                "Father's Name": "Ibrahim"
+              }
+            },
+            {
+              type: "Turkish Tourist Visa",
+              number: "58 977378",
+              issueDate: "2023-10-04",
+              expiryDate: "2024-10-04",
+              issuingAuthority: "Turkish Embassy Baghdad",
+              details: {
+                "Duration": "30 days",
+                "Type": "Tourism"
+              }
+            }
+          ]}
+          additionalInfo={[
+            "Considered one of the most dangerous smugglers in the region",
+            "Operates a sophisticated network spanning multiple countries",
+            "Uses encrypted Telegram channel for communications",
+            "Known for complex and dubious methods to bypass security",
+            "Generates significant financial gains through illegal migration",
+            "Network operates with high secrecy using advanced technologies"
+          ]}
           fees="€4,000-€5,000 for Italy segment"
-          dangerLevel="High Risk"
+          dangerLevel="High-Risk Individual"
           photoUrl="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=300"
           delay={0}
         />
