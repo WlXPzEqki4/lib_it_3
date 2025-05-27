@@ -19,6 +19,7 @@ const Footer: React.FC = () => {
               <li><a href="#introduction" className="hover:text-accent-300 transition-colors">Introduction</a></li>
               <li><a href="#perilous-passage" className="hover:text-accent-300 transition-colors">The Perilous Passage</a></li>
               <li><a href="#traffickers" className="hover:text-accent-300 transition-colors">Trafficker Profiles</a></li>
+              <li><a href="#network-analysis" className="hover:text-accent-300 transition-colors">Network Analysis</a></li>
               <li><a href="#experiences" className="hover:text-accent-300 transition-colors">Migrant Experiences</a></li>
               <li><a href="#conclusion" className="hover:text-accent-300 transition-colors">Conclusion</a></li>
             </ul>

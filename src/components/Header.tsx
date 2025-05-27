@@ -48,6 +48,7 @@ const Header: React.FC = () => {
             <li><a href="#introduction" className="text-white hover:text-accent-300 transition-colors" onClick={() => setIsMenuOpen(false)}>Introduction</a></li>
             <li><a href="#perilous-passage" className="text-white hover:text-accent-300 transition-colors" onClick={() => setIsMenuOpen(false)}>The Journey</a></li>
             <li><a href="#traffickers" className="text-white hover:text-accent-300 transition-colors" onClick={() => setIsMenuOpen(false)}>Traffickers</a></li>
+            <li><a href="#network-analysis" className="text-white hover:text-accent-300 transition-colors" onClick={() => setIsMenuOpen(false)}>Network Analysis</a></li>
             <li><a href="#experiences" className="text-white hover:text-accent-300 transition-colors" onClick={() => setIsMenuOpen(false)}>Experiences</a></li>
             <li><a href="#conclusion" className="text-white hover:text-accent-300 transition-colors" onClick={() => setIsMenuOpen(false)}>Conclusion</a></li>
           </ul>
