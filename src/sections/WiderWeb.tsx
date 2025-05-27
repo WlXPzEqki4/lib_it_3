@@ -1,52 +1,7 @@
 import React from 'react';
 import ScrollSection from '../components/ScrollSection';
 import AnimatedText from '../components/AnimatedText';
-import AnimatedMap from '../components/AnimatedMap';
 import ProfileCard from '../components/ProfileCard';
-
-const otherRoutes = [
-  {
-    id: 'tunisia-route',
-    points: [
-      { x: 10.1815, y: 36.8065 }, // Tunisia
-      { x: 11.0, y: 36.0 },      // Mediterranean
-      { x: 11.5, y: 35.5 },      // Mediterranean
-      { x: 12.6011, y: 35.5087 }, // Lampedusa
-    ],
-    color: '#27ab83',
-    delay: 0.3
-  },
-  {
-    id: 'egypt-route',
-    points: [
-      { x: 29.9187, y: 31.2001 }, // Egypt (Alexandria)
-      { x: 25.0, y: 33.0 },      // Mediterranean
-      { x: 20.0, y: 35.0 },      // Mediterranean
-      { x: 14.0154, y: 37.5994 }, // Sicily
-    ],
-    color: '#27ab83',
-    delay: 0.6
-  },
-  {
-    id: 'libya-malta-italy',
-    points: [
-      { x: 17.8739, y: 31.5494 }, // Libya
-      { x: 15.5, y: 35.0 },      // Mediterranean
-      { x: 14.5144, y: 35.8989 }, // Malta
-      { x: 14.0154, y: 37.5994 }, // Sicily
-    ],
-    color: '#27ab83',
-    delay: 0.9
-  }
-];
-
-const keyLocations = [
-  { id: 'tunisia', x: 10.1815, y: 36.8065, label: 'Tunisia', delay: 0.3 },
-  { id: 'egypt', x: 29.9187, y: 31.2001, label: 'Egypt', delay: 0.6 },
-  { id: 'malta', x: 14.5144, y: 35.8989, label: 'Malta', delay: 0.9 },
-  { id: 'lampedusa', x: 12.6011, y: 35.5087, label: 'Lampedusa', highlight: true, delay: 0.3 },
-  { id: 'sicily', x: 14.0154, y: 37.5994, label: 'Sicily', highlight: true }
-];
 
 const WiderWeb: React.FC = () => {
   return (
@@ -167,16 +122,6 @@ const WiderWeb: React.FC = () => {
                 "Operates with high technological sophistication"
               ]}
               delay={400}
-            />
-          </div>
-          
-          <div className="mt-8">
-            <AnimatedMap 
-              routes={otherRoutes} 
-              locations={keyLocations}
-              className="h-[400px] w-full"
-              center={[15.5, 35.0]}
-              zoom={5}
             />
           </div>
         </div>
