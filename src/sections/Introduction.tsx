@@ -10,7 +10,7 @@ const Introduction: React.FC = () => {
   const summaryData = [
     {
       id: 'network',
-      icon: <Network className="text-teal-400" size={24} />,
+      icon: <Network className="text-teal-400\" size={24} />,
       title: '"Mustafa Berlin" Centered Operation',
       content: 'Led by Mustafa Jalil Ibrahim (Mustafa Berlin), this sophisticated network operates across multiple countries, from Iraq through Turkey and Libya to various European destinations.',
       details: [
@@ -34,7 +34,7 @@ const Introduction: React.FC = () => {
     },
     {
       id: 'operations',
-      icon: <Map className="text-teal-400" size={24} />,
+      icon: <Map className="text-teal-400\" size={24} />,
       title: 'Operational Methods',
       content: 'Networks employ sophisticated methods for recruitment, transport, and border crossing, often at great risk to migrants.',
       details: [
@@ -58,7 +58,7 @@ const Introduction: React.FC = () => {
     },
     {
       id: 'risks',
-      icon: <AlertTriangle className="text-accent-400" size={24} />,
+      icon: <AlertTriangle className="text-accent-400\" size={24} />,
       title: 'Risk Factors',
       content: 'The journey presents severe risks to migrants, with multiple documented hazards and dangers.',
       details: [
