@@ -43,17 +43,23 @@ const CircumventingDublin: React.FC = () => {
                   <p className="text-sm text-primary-300 mb-1">Cost</p>
                   <p className="text-white font-medium">€2,500-€4,000</p>
                 </div>
-                <div className="grid grid-cols-1 gap-4">
-                  <img 
-                    src="/images/permit-front.jpg" 
-                    alt="Forged Italian Residence Permit - Front"
-                    className="w-full rounded-lg"
-                  />
-                  <img 
-                    src="/images/permit-uv.jpg" 
-                    alt="Forged Italian Residence Permit - UV Security Features"
-                    className="w-full rounded-lg"
-                  />
+                <div className="grid grid-cols-1 gap-4 mt-4">
+                  <div className="bg-primary-800/50 rounded-lg p-2">
+                    <img 
+                      src="/images/permit-front.jpg" 
+                      alt="Forged Italian Residence Permit - Front"
+                      className="w-full rounded-lg"
+                    />
+                    <p className="text-xs text-primary-300 mt-2 text-center">Front view of forged permit</p>
+                  </div>
+                  <div className="bg-primary-800/50 rounded-lg p-2">
+                    <img 
+                      src="/images/permit-uv.jpg" 
+                      alt="Forged Italian Residence Permit - UV Security Features"
+                      className="w-full rounded-lg"
+                    />
+                    <p className="text-xs text-primary-300 mt-2 text-center">UV security features visible under blacklight</p>
+                  </div>
                 </div>
               </div>
             </div>
