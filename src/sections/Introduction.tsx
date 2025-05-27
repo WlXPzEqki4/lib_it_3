@@ -10,7 +10,7 @@ const Introduction: React.FC = () => {
   const summaryData = [
     {
       id: 'network',
-      icon: <Network className="text-teal-400\" size={24} />,
+      icon: <Network className="text-teal-400" size={24} />,
       title: '"Mustafa Berlin" Centered Operation',
       content: 'Led by Mustafa Jalil Ibrahim (Mustafa Berlin), this sophisticated network operates across multiple countries, from Iraq through Turkey and Libya to various European destinations.',
       details: [
@@ -22,7 +22,7 @@ const Introduction: React.FC = () => {
     },
     {
       id: 'routes',
-      icon: <Route className="text-teal-400\" size={24} />,
+      icon: <Route className="text-teal-400" size={24} />,
       title: 'Critical Routes',
       content: 'The Libya-Italy maritime corridor serves as a primary entry point to Europe, with multiple subsidiary routes and transit points.',
       details: [
@@ -34,7 +34,7 @@ const Introduction: React.FC = () => {
     },
     {
       id: 'operations',
-      icon: <Map className="text-teal-400\" size={24} />,
+      icon: <Map className="text-teal-400" size={24} />,
       title: 'Operational Methods',
       content: 'Networks employ sophisticated methods for recruitment, transport, and border crossing, often at great risk to migrants.',
       details: [
@@ -46,7 +46,7 @@ const Introduction: React.FC = () => {
     },
     {
       id: 'financial',
-      icon: <DollarSign className="text-accent-400\" size={24} />,
+      icon: <DollarSign className="text-accent-400" size={24} />,
       title: 'Financial Scale',
       content: 'Significant profits are generated through varying fee structures and additional service charges.',
       details: [
@@ -58,7 +58,7 @@ const Introduction: React.FC = () => {
     },
     {
       id: 'risks',
-      icon: <AlertTriangle className="text-accent-400\" size={24} />,
+      icon: <AlertTriangle className="text-accent-400" size={24} />,
       title: 'Risk Factors',
       content: 'The journey presents severe risks to migrants, with multiple documented hazards and dangers.',
       details: [
@@ -109,15 +109,15 @@ const Introduction: React.FC = () => {
                   <ul className="space-y-2 text-primary-200">
                     <li className="flex items-start gap-2">
                       <span className="text-accent-400 mt-1.5">•</span>
-                      <span>This report illuminates Italy's pivotal role as a convergence point where initial maritime smuggling operations, such as those managed by the 'Mustafa Berlin-centered' syndicate and 'Abu Al-Nour,' interface with distinct, specialized networks.</span>
+                      <span>These analyses show that Italy is a central hub where initial sea smuggling operations, like those run by the 'Mustafa Berlin-centered' syndicate and 'Abu Al-Nour,' connect with separate, specialized networks.</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-accent-400 mt-1.5">•</span>
-                      <span>These latter entities are dedicated to facilitating onward illicit travel deeper into Europe from Italian soil, utilizing established routes and methods including document forgery.</span>
+                      <span>These other networks, such as the one led by 'Mahend Al-Iraqi,' then focus on smuggling people deeper into Europe from Italy. They use established routes and methods, including fake documents.</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-accent-400 mt-1.5">•</span>
-                      <span>This creates a multi-layered operational challenge within Italian jurisdiction.</span>
+                      <span>This creates a complex, multi-layered operational challenge for authorities within Italy.</span>
                     </li>
                   </ul>
                 </div>
