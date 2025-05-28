@@ -3,6 +3,7 @@ import ScrollSection from '../components/ScrollSection';
 import AnimatedText from '../components/AnimatedText';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, Network, Users, Route, AlertTriangle, DollarSign, Map, AlertOctagon } from 'lucide-react';
+import RecentReportingDropdown from '../components/RecentReportingDropdown';
 
 const Introduction: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -130,7 +131,12 @@ const Introduction: React.FC = () => {
           <AnimatedText delay={800}>
             <h4 className="text-xl font-semibold text-white mb-6">Executive Summary</h4>
           </AnimatedText>
-          
+
+          {/* Recent Reporting Dropdown - right column only, below Executive Summary */}
+          <div className="mb-4 w-full md:w-80 ml-auto">
+            <RecentReportingDropdown />
+          </div>
+
           {summaryData.map((section, index) => (
             <AnimatedText key={section.id} delay={1000 + (index * 200)}>
               <motion.div 

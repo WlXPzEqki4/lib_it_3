@@ -7,23 +7,19 @@ import { Anchor, Clock, Banknote, AlertTriangle } from 'lucide-react';
 
 const libyanRoute = [
   {
-    id: 'libya-route-detailed',
+    id: 'italian-skatra-lampedusa',
     points: [
-      { x: 17.8739, y: 31.5494 }, // Libya
-      { x: 16.5, y: 33.5 },      // Mediterranean
-      { x: 15.5, y: 35.0 },      // Mediterranean
-      { x: 14.5, y: 36.5 },      // Mediterranean
-      { x: 14.0154, y: 37.5994 }, // Sicily
+      { x: 22.6367, y: 32.7630 }, // Derna (Italian Skatra)
+      { x: 12.6000, y: 35.5011 }  // Lampedusa
     ],
-    color: '#ff3333',
+    color: '#ff3333', // red line for primary route
     highlight: true
   }
 ];
 
 const keyLocations = [
-  { id: 'libya', x: 17.8739, y: 31.5494, label: 'Libya' },
-  { id: 'italian-skatra', x: 16.5, y: 33.5, label: 'Italian Skatra', delay: 0.5 },
-  { id: 'sicily', x: 14.0154, y: 37.5994, label: 'Sicily', highlight: true }
+  { id: 'italian-skatra', x: 22.6367, y: 32.7630, label: 'Italian Skatra', highlight: false, embarkation: true },
+  { id: 'lampedusa', x: 12.6000, y: 35.5011, label: 'Lampedusa', highlight: true, arrival: true }
 ];
 
 const PerilousPassage: React.FC = () => {
@@ -47,8 +43,8 @@ const PerilousPassage: React.FC = () => {
             routes={libyanRoute} 
             locations={keyLocations}
             className="h-screen-60 md:h-96 mb-8"
-            center={[15.5, 35.0]}
-            zoom={5}
+            center={[17.0, 34.5]} // Center between Derna and Lampedusa
+            zoom={4.2}
           />
           
           <div className="grid grid-cols-2 gap-4">

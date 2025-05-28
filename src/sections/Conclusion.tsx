@@ -3,6 +3,7 @@ import ScrollSection from '../components/ScrollSection';
 import AnimatedText from '../components/AnimatedText';
 import DataCard from '../components/DataCard';
 import { Network, ArrowRightLeft, AlertCircle, Route } from 'lucide-react';
+import RecentReportingDropdown from '../components/RecentReportingDropdown';
 
 const Conclusion: React.FC = () => {
   return (
@@ -18,7 +19,9 @@ const Conclusion: React.FC = () => {
           A nation at the crossroads of Europe's migration realities
         </p>
       </AnimatedText>
-      
+
+      <RecentReportingDropdown />
+
       <div className="max-w-5xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
           <div className="space-y-8">
