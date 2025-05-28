@@ -12,8 +12,20 @@ const libyanRoute = [
       { x: 22.6367, y: 32.7630 }, // Embarkation: Italian Skatra (Derna)
       { x: 12.6000, y: 35.5011 }  // Arrival: Lampedusa
     ],
-    color: '#ff3333', // solid red line
-    highlight: true
+    color: '#ff3333', // prominent red
+    highlight: true,
+    label: 'Libya to Lampedusa'
+  },
+  {
+    id: 'lampedusa-milan',
+    points: [
+      { x: 12.6000, y: 35.5011 }, // Lampedusa
+      { x: 9.1900, y: 45.4642 }   // Milan
+    ],
+    color: '#ffd600', // yellow for onward transit
+    highlight: false,
+    dasharray: [2, 2], // for dashed line if supported
+    label: 'Onward Transit: Lampedusa to Milan'
   }
 ];
 
@@ -23,8 +35,8 @@ const keyLocations = [
     x: 22.6367,
     y: 32.7630,
     label: 'Embarkation: Italian Skatra (Eastern Libya)',
-    highlight: false,
-    embarkation: true,
+    markerColor: '#ff3333', // solid red
+    markerType: 'embarkation',
     description: 'Primary departure point in Eastern Libya.'
   },
   {
@@ -32,9 +44,18 @@ const keyLocations = [
     x: 12.6000,
     y: 35.5011,
     label: 'Arrival: Lampedusa, Italy',
-    highlight: true,
-    arrival: true,
+    markerColor: '#27ab83', // solid green
+    markerType: 'arrival',
     description: 'Key Italian island arrival point from North Africa.'
+  },
+  {
+    id: 'milan',
+    x: 9.1900,
+    y: 45.4642,
+    label: 'Italian Transit Hub: Milan',
+    markerColor: '#ffd600', // solid yellow
+    markerType: 'transit',
+    description: 'Major internal transit hub in Italy.'
   }
 ];
 
@@ -59,8 +80,8 @@ const PerilousPassage: React.FC = () => {
             routes={libyanRoute} 
             locations={keyLocations}
             className="h-screen-60 md:h-96 mb-8"
-            center={[17.5, 34.0]} // Center to show both Derna and Lampedusa
-            zoom={5.0}
+            center={[15.0, 39.0]} // Center to show Libya, Lampedusa, and Milan
+            zoom={2.5}
           />
           
           <div className="grid grid-cols-2 gap-4">
